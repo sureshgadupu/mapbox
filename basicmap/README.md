@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project shows rendering map inbrowser using mapbox map service.
+
 ## Available Scripts
 
 In the project directory, you can run:
