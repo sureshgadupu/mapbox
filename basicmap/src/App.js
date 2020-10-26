@@ -26,12 +26,15 @@ function App() {
         style: "mapbox://styles/mapbox/outdoors-v11",
         center: [state.lng, state.lat],
         zoom: state.zoom,
+        minZoom: 1,
+        maxZoom: 16,
       });
 
       map.on("load", () => {
         setMap(map);
       });
     };
+    console.log("zoom :" + state.zoom);
 
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map, state]);

@@ -6,6 +6,13 @@ import "./App.css";
 const accessToken =
   "pk.eyJ1IjoiYnJpYW5iYW5jcm9mdCIsImEiOiJsVGVnMXFzIn0.7ldhVh3Ppsgv4lCYs65UdA";
 
+const navControlStyle = {
+  position: "absolute",
+  bottom: 70,
+  right: 0,
+  padding: "10px",
+};
+
 function App() {
   const [viewport, setViewport] = useState({
     latitude: 0.0,
@@ -23,20 +30,20 @@ function App() {
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
+        minZoom={1}
+        maxZoom={15}
+        doubleClickZoom={true}
+        scrollZoom={true}
+        touchZoom={true}
       >
-        {/* <div className="viewPortnfo">
-          <div>
-            <strong>Longitude:</strong>
-            <span> {viewport.longitude}</span>
-          </div>
-          <div>
-            <strong>Latitude:</strong> <span>{viewport.latitude}</span>
-          </div>
+        <div className="viewPortnfo">
           <div>
             <strong>Zoom:</strong> <span>{viewport.zoom}</span>
           </div>
-        </div> */}
-        <NavigationControl />
+        </div>
+        <div style={navControlStyle}>
+          <NavigationControl compassLabel="Ruhe im Norden" />
+        </div>
       </ReactMapGL>
     </div>
   );
