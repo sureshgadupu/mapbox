@@ -25,10 +25,7 @@ function App() {
     height: "100vh",
     zoom: 1.25,
   });
-  const [userLocation, setUserLocation] = useState({
-    latitude: 0,
-    longitude: 0,
-  });
+  const [userLocation, setUserLocation] = useState({});
   return (
     <div className="App">
       <ReactMapGL
@@ -44,7 +41,6 @@ function App() {
             positionOptions={{ enableHighAccuracy: true }}
             showUserLocation={true}
             onGeolocate={(PositionOptions) => {
-              console.log(PositionOptions["coords"]);
               setUserLocation({
                 ...userLocation,
                 latitude: PositionOptions["coords"].latitude,
@@ -53,24 +49,26 @@ function App() {
             }}
           />
         </div>
-        <Marker
-          longitude={userLocation.longitude}
-          latitude={userLocation.latitude}
-        >
-          <svg
-            height={SIZE}
-            viewBox="0 0 24 24"
-            style={{
-              cursor: "pointer",
-              fill: "#d00",
-              stroke: "none",
-              transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
-            }}
+        {Object.keys(userLocation).length > 0 ? (
+          <Marker
+            longitude={userLocation.longitude}
+            latitude={userLocation.latitude}
           >
-            <title>You are here</title>
-            <path d={ICON} />
-          </svg>
-        </Marker>
+            <svg
+              height={SIZE}
+              viewBox="0 0 24 24"
+              style={{
+                cursor: "pointer",
+                fill: "#d00",
+                stroke: "none",
+                transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
+              }}
+            >
+              <title>You are here</title>
+              <path d={ICON} />
+            </svg>
+          </Marker>
+        ) : null}
         <div className="viewPortnfo">
           <div>
             <strong>Zoom:</strong> <span>{viewport.zoom}</span>
