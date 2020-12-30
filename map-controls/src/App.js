@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import ReactMapGL, { NavigationControl } from "react-map-gl";
+import ReactMapGL, { NavigationControl, GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
+import { Pins } from "./Pin";
 
 const accessToken =
   "pk.eyJ1IjoiYnJpYW5iYW5jcm9mdCIsImEiOiJsVGVnMXFzIn0.7ldhVh3Ppsgv4lCYs65UdA";
@@ -12,14 +13,20 @@ const navControlStyle = {
   right: 0,
   padding: "10px",
 };
+const geolocateStyle = {
+  position: "absolute",
+  bottom: 100,
+  left: 0,
+  margin: 10,
+};
 
 function App() {
   const [viewport, setViewport] = useState({
-    latitude: 0.0,
-    longitude: 0.0,
+    latitude: 30.0,
+    longitude: 40.0,
     width: "100vw",
     height: "100vh",
-    zoom: 1.25,
+    zoom: 3,
   });
   return (
     <div className="App">
@@ -31,11 +38,20 @@ function App() {
           setViewport(viewport);
         }}
         minZoom={1}
-        maxZoom={15}
+        maxZoom={20}
         doubleClickZoom={true}
         scrollZoom={true}
         touchZoom={true}
       >
+        <div style={geolocateStyle}>
+          <GeolocateControl
+            positionOptions={{ enableHighAccuracy: true }}
+            trackUserLocation={true}
+            showUserLocation={true}
+          >
+            <Pins data={viewport} />
+          </GeolocateControl>
+        </div>
         <div className="viewPortnfo">
           <div>
             <strong>Zoom:</strong> <span>{viewport.zoom}</span>

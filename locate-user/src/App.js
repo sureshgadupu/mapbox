@@ -31,7 +31,7 @@ function App() {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={accessToken}
-        mapStyle={"mapbox://styles/mapbox/outdoors-v11"}
+        mapStyle={"mapbox://styles/mapbox/dark-v10"}
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
@@ -40,6 +40,7 @@ function App() {
           <GeolocateControl
             positionOptions={{ enableHighAccuracy: true }}
             showUserLocation={true}
+            auto={true}
             onGeolocate={(PositionOptions) => {
               setUserLocation({
                 ...userLocation,
