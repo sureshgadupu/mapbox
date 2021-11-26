@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMapGL, { NavigationControl, GeolocateControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
-import { Pins } from "./Pin";
+import Pins from "./Pin";
 
 const accessToken =
   "pk.eyJ1IjoiYnJpYW5iYW5jcm9mdCIsImEiOiJsVGVnMXFzIn0.7ldhVh3Ppsgv4lCYs65UdA";
